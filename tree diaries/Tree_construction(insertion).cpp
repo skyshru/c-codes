@@ -1,15 +1,24 @@
-//// Part 2 BST
-//// Construncting a Binary search tree and displaying it
+//// Part 3 BST
+//// Converting my code into templates
 ///started finisged at 23.28
 
 #include<bits/stdc++.h>
 using namespace std;
 
-struct Node {
-	int key; // this is the data to be stored
+
+
+
+template <typename T>
+class BinarySearchTree{
+	
+	public:
+		
+		struct Node {
+
+	T key; // this is the data to be stored
 	Node* left;Node* right; // these are the pointers to the left and right child respectively
 	
-	Node(int k)  // this will be used to create a new node every time we insert
+	Node(T k)  // this will be used to create a new node every time we insert
 	{
 		key=k;
 		left=right=NULL;
@@ -18,17 +27,12 @@ struct Node {
 	}
 	
 };
-
-
-class BinarySearchTree{
-	
-	public:
 		
 		BinarySearchTree(){
 			root=NULL;
 		}///this constructor will be invoked whenever you create an instance, and the root=NULL means the tree is empty
 		
-		void insert(int key)
+		void insert(T key)
 		{
 			
 			if(root==NULL)
@@ -49,7 +53,7 @@ class BinarySearchTree{
 	private:
 		Node* root; //so that no one can alter the structure of the tree from outside the class
 		
-		void insert(int key,Node* current) ///current is the current node in which we want going to insert
+		void insert(T key,Node* current) ///current is the current node in which we want going to insert
 		{
 			if(key<current->key)
 			{
@@ -89,7 +93,7 @@ class BinarySearchTree{
 int main()
 {
 	
-	BinarySearchTree bst; // an instance of the class, it will invoke the constructor
+	BinarySearchTree <int> bst; // an instance of the class, it will invoke the constructor
 	bst.insert(1);  //it will revoke the public insert function
 	bst.insert(6);
 	bst.insert(4);
