@@ -1,6 +1,6 @@
-//// Part 1 BST
-//// Construncting a Binary search tree (inserting nodes basically)
-///started 21.58
+//// Part 2 BST
+//// Construncting a Binary search tree and displaying it
+///started finisged at 23.28
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -13,6 +13,8 @@ struct Node {
 	{
 		key=k;
 		left=right=NULL;
+		
+		
 	}
 	
 };
@@ -28,7 +30,8 @@ class BinarySearchTree{
 		
 		void insert(int key)
 		{
-			if(root=NULL)
+			
+			if(root==NULL)
 			root= new Node(key);///if the tree is empty then insert a new node
 			
 			else
@@ -36,6 +39,12 @@ class BinarySearchTree{
 			
 		}
 	
+	void display() 
+	{
+		
+      display(root);///first of all will diplay the root
+      cout << endl;
+    }
 	
 	private:
 		Node* root; //so that no one can alter the structure of the tree from outside the class
@@ -60,8 +69,18 @@ class BinarySearchTree{
 				else
 				insert(key,current->right);
 			}
+			
 		}
 		
+		void display(Node* leaf)
+		 {///inorder traversal, left, root,right.
+      if (leaf != NULL) 
+	  {
+        display(leaf->left);
+        cout << leaf->key << " ";
+        display(leaf->right);
+                        }
+         }
 		
 		
 		
@@ -79,6 +98,8 @@ int main()
 	bst.insert(9);
 	bst.insert(8);
 	bst.insert(3);
+	
+	bst.display();
 	
 	return 0;
 }
