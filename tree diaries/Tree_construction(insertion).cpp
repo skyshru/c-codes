@@ -1,6 +1,6 @@
-//// Part 3 BST
-//// Converting my code into templates
-///started finisged at 23.28
+//// Part 4 BST
+//// Not allowing duplicates
+
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -65,7 +65,8 @@ class BinarySearchTree{
 				
 			}
 			
-			else{
+			else if (key>current->key)
+			{
 				
 					if(current->right==NULL)
 				current->right=new Node(key);
@@ -73,6 +74,9 @@ class BinarySearchTree{
 				else
 				insert(key,current->right);
 			}
+			
+			else
+			cout<<"No dupliactes here, "<<key<<" is a duplicate"<<endl;
 			
 		}
 		
@@ -94,7 +98,7 @@ int main()
 {
 	
 	BinarySearchTree <int> bst; // an instance of the class, it will invoke the constructor
-	bst.insert(1);  //it will revoke the public insert function
+	bst.insert(6);  //it will revoke the public insert function
 	bst.insert(6);
 	bst.insert(4);
 	bst.insert(7);
