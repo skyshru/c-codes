@@ -1,12 +1,9 @@
-//// Part 4 BST
-//// Not allowing duplicates
+//// Part 5 BST
+//// Search operation
 
 
 #include<bits/stdc++.h>
 using namespace std;
-
-
-
 
 template <typename T>
 class BinarySearchTree{
@@ -50,6 +47,11 @@ class BinarySearchTree{
       cout << endl;
     }
 	
+	void search(T key)
+	{
+	    search(root,key);
+	}
+	
 	private:
 		Node* root; //so that no one can alter the structure of the tree from outside the class
 		
@@ -89,6 +91,23 @@ class BinarySearchTree{
         display(leaf->right);
                         }
          }
+         
+         void search(Node* current,T key)
+         {
+             if(current!=NULL){
+             if(key==current->key)
+             cout<<"Found";
+             
+             else if (key<current->key)
+             search(current->left,key);
+             
+             else 
+             search(current->right,key);}
+             
+            else
+             cout<<"Key does not exist";
+         }
+          
 		
 		
 		
@@ -106,8 +125,9 @@ int main()
 	bst.insert(9);
 	bst.insert(8);
 	bst.insert(3);
-	
 	bst.display();
+	cout<<endl;
+	bst.search(22);
 	
 	return 0;
 }
