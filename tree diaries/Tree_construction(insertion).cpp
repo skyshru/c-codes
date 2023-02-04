@@ -105,7 +105,7 @@ class BinarySearchTree{
              search(current->right,key);}
              
             else
-             cout<<"Key does not exist";
+             cout<<"Key "<<key<<" does not exist";
          }
           
 		
