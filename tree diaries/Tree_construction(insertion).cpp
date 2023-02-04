@@ -1,5 +1,5 @@
-//// Part 5 BST
-//// Search operation
+//// Part 6 BST
+//// Delete operation
 
 
 #include<bits/stdc++.h>
@@ -24,11 +24,12 @@ class BinarySearchTree{
 	}
 	
 };
-		
+	/////constructor	
 		BinarySearchTree(){
 			root=NULL;
 		}///this constructor will be invoked whenever you create an instance, and the root=NULL means the tree is empty
 		
+    ///////insert function
 		void insert(T key)
 		{
 			
@@ -39,21 +40,31 @@ class BinarySearchTree{
 			insert(key,root); /// if the tree is not empty, the key and root node will be passed.
 			
 		}
-	
+    ///////display function	
 	void display() 
 	{
 		
       display(root);///first of all will diplay the root
       cout << endl;
     }
-	
+
+///////search function	
 	void search(T key)
 	{
 	    search(root,key);
 	}
 	
+//////delete function
+    void deleteNode(T key)
+    {
+        deleteNode(root,key);
+    }
+	
 	private:
 		Node* root; //so that no one can alter the structure of the tree from outside the class
+		Node* next;
+		Node* nextl;
+		
 		
 		void insert(T key,Node* current) ///current is the current node in which we want going to insert
 		{
@@ -107,9 +118,53 @@ class BinarySearchTree{
             else
              cout<<"Key "<<key<<" does not exist";
          }
+         
+         void deleteNode(Node* current, T key)
+         {
+             if(key==current->key)
+             {
+                 if(current->left==NULL  && current->right==NULL)
+                  current=NULL;///this condition is for:
+                 // either it is a leaf Node
+                 // either it is the only Node
+                 
+                 else if(current->left==NULL)
+                 {
+                     ///if there is right child only
+                     current->key=current->right->key;
+                     current->right=NULL;
+                 }
+                 
+                 else if(current->right=NULL)
+                 {
+                     //if there is only left child
+                     current->key=current->left->key;
+                     current->left=NULL;
+                 }
+                 
+                 else
+                 {
+                      next=current->right;
+                     if(next->left==NULL)
+                     next->left=current->left;
+                     
+                     else
+                      nextl=next->left;
+                     nextl->left=current->left;
+                     nextl->right=next;
+                     next->left=NULL;
+                 }
+                 
+             }
+             
+             else if (key<current->key)
+             deleteNode(current->left,key);
+             
+             else
+             deleteNode (current->right,key);
+         }
           
-		
-		
+          
 		
 };
 
@@ -127,7 +182,12 @@ int main()
 	bst.insert(3);
 	bst.display();
 	cout<<endl;
-	bst.search(22);
+	
+	bst.deleteNode(3);
+	bst.display();
+	cout<<endl;
+	
+	bst.search(5000);
 	
 	return 0;
 }
